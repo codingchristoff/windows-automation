@@ -2,17 +2,18 @@
 .SYNOPSIS
     This script runs the winget command to install various packages.
 .VERSION
-    1.0.0
+    1.1.0
 .AUTHOR
     Christopher Lowe
 .DATE
     21/08/2024
 #>
 
-$generalInstallPath = "D:"
+$utilityPath = "D:"
+$codingToolsPath = "P:"
 
-function InstallApp($wingetName, $appName) {
-    $appFilePath = $("$generalInstallPath\$appName")
+function InstallApp($wingetName, $appName, $installPath) {
+    $appFilePath = $("$installPath\$appName")
     VerifyAndCreateDir($appFilePath)
     Install $wingetName $appFilePath
 }
@@ -27,4 +28,5 @@ function VerifyAndCreateDir($appFilePath) {
 }
 
 ## Set program installs here.
-InstallApp "Piriform.CCleaner" "ccleaner"
+InstallApp "Piriform.CCleaner" "ccleaner" $utilityPath
+InstallApp "Discord.Discord" "discord" $utilityPath
